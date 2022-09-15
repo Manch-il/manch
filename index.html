@@ -1,277 +1,303 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
-        <style>
-            /* Preferred box-sizing value */
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-            }
 
-            html * {
-                font-family: 'Rubik', sans-serif;                
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Preferred box-sizing value */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-            html{
-                /* background-color: #000; */
-                background-image: url(./mini-logo.png);
-                color: #fff;
-            }
+        html * {
+            font-family: 'Rubik', sans-serif;
+        }
 
-            body{
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-                margin: 0;
-            }
+        html {
+            /* background-color: #000; */
+            background-image: url(./mini-logo.png);
+            color: #fff;
+        }
 
-            h3{
-                font-weight:500;
-                color: #F9B94A;
-            }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-            header img{
-                display: block;
-                margin: 0 auto;
-            }
+        h3 {
+            font-weight: 500;
+            color: #F9B94A;
+        }
 
-            main, header, footer{
-                width: 600px;
-                margin: 0 auto;
-                background-color: #000;
-            }
+        header img {
+            display: block;
+            margin: 0 auto;
+        }
 
-            main{
-                padding: 0px 16px;
-            }
-            
-            main section{
-                margin: 16px 0;
-            }
+        main,
+        header,
+        footer {
+            width: 600px;
+            margin: 0 auto;
+            background-color: #000;
+        }
 
-            ul{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 6px;
-                padding: 0;
-                margin: 0;
-            }
+        main {
+            padding: 0px 16px;
+        }
 
-            ul li{
-                list-style-type: none;
-            }
+        main section {
+            margin: 16px 0;
+        }
 
-            .price{
-                position: relative;
-            }
+        ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            padding: 0;
+            margin: 0;
+        }
 
-            .price::before{
-                content: "-";
-                margin-inline-end: 5px;
-            }
+        ul li {
+            list-style-type: none;
+        }
 
-            .price::after{
-                content: "₪";
-                position: absolute;
-                margin-inline-start: 5px;
-            }
+        ul li.promotion {
+            font-size: 40px;
+            text-align: center;
+            font-weight: 500;
+        }
 
-            footer{
-                text-align: center;
-                padding: 10px 0;
-                margin: auto auto 0;
-            }
+        .price {
+            position: relative;
+        }
 
-            footer a, footer a:focus, footer a:active{
-                color:#fff;
-            }
+        .price::before {
+            content: "-";
+            margin-inline-end: 5px;
+        }
 
-            .float-number{
+        .price::after {
+            content: "₪";
+            position: absolute;
+            margin-inline-start: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            margin: auto auto 0;
+        }
+
+        footer a,
+        footer a:focus,
+        footer a:active {
+            color: #fff;
+        }
+
+        .float-number {
+            position: fixed;
+            bottom: 50px;
+            left: 0;
+            display: none;
+        }
+
+        .float-number a {
+            width: 60px;
+            height: 60px;
+            background: #F9B94A;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+        }
+
+        .float-number a img {
+            transition: 0.02s;
+            animation-name: rotate-phone;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
+        @media screen and (min-width: 728px) {
+            body:after {
                 position: fixed;
-                bottom: 50px;
-                left: 0;
-                display: none;
+                content: " ";
+                background: #000;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                opacity: 0.2;
+                pointer-events: none;
             }
 
-            .float-number a{
-                width: 60px;
-                height: 60px;
-                background: #F9B94A;
+            .float-number {
+                left: calc(50% - 300px);
+            }
+        }
+
+        @media screen and (max-width: 728px) {
+            ul {
+                grid-template-columns: 1fr;
+            }
+
+            h3 {
                 text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 100%;
             }
 
-            .float-number a img{
-                transition: 0.02s;
-                animation-name: rotate-phone;
-                animation-duration: 2s;
-                animation-iteration-count: infinite;
+            main,
+            header,
+            footer {
+                width: 90%;
+            }
+        }
+
+        @keyframes rotate-phone {
+            0% {
+                transform: rotate(0);
             }
 
-            @media screen and (min-width: 728px){
-                body:after {
-                    position: fixed;
-                    content: " ";
-                    background: #000;
-                    width: 100%;
-                    height: 100%;
-                    z-index: -1;
-                    opacity: 0.2;
-                    pointer-events: none;
-                }
-                .float-number{
-                    left: calc(50% - 300px);
-                }
-            }
-            @media screen and (max-width: 728px){
-                ul{
-                    grid-template-columns: 1fr;
-                }
-
-                h3{
-                    text-align: center;
-                }
-
-                main, header, footer{
-                    width: 90%;
-                }
+            50% {
+                transform: rotate(-15deg);
             }
 
-            @keyframes rotate-phone{
-                0%{
-                    transform: rotate(0);
-                }
-                50%{
-                    transform: rotate(-15deg);
-                }
-                100%{
-                    transform: rotate(0);
-                }
+            100% {
+                transform: rotate(0);
             }
+        }
+    </style>
+    <title>מאנץ׳ - רק בגלל הדודא</title>
+</head>
 
-        </style>
-        <title>מאנץ׳ - רק בגלל הדודא</title>
-    </head>
+<body>
+    <header>
+        <img src="./logo.png" alt="Icon">
+    </header>
+    <main>
+        <section>
+            <h3> מאנצים <span class="price">17</span> </h3>
+            <ul>
+                <li>כדורי פירה</li>
+                <li>סיגר בשר</li>
+                <li>קובה נמוסיה</li>
+                <li>צ’יפס</li>
+                <li>צ’יפס בטטה</li>
+                <li>טבעות בצל</li>
+            </ul>
+        </section>
 
-    <body>
-        <header>
-            <img src="./logo.png" alt="Icon">
-        </header>
-        <main>
-            <section>
-                <h3> מאנצים <span class="price">17</span> </h3>
-                <ul>
-                    <li>כדורי פירה</li>
-                    <li>סיגר בשר</li>
-                    <li>קובה נמוסיה</li>
-                    <li>צ’יפס</li>
-                    <li>צ’יפס בטטה</li>
-                    <li>טבעות בצל</li>
-                </ul>
-            </section>
+        <section>
+            <h3> מאנצים של המתקדמים <span class="price">25</span> </h3>
+            <ul>
+                <li>שניצלונים </li>
+                <li>כרובית מטוגנת בטחינה </li>
+                <li>הום פרייז </li>
+                <li>כנפיים בצילי מתוק וחריף</li>
+                <li>כנפיים ברביקיו </li>
+                <li>כנפיים בסילאן ומייפל </li>
+                <li>פלאפל בטורטיה</li>
+            </ul>
+        </section>
 
-            <section>
-                <h3> מאנצים של המתקדמים <span class="price">25</span> </h3>
-                <ul>
-                    <li>שניצלונים </li>
-                    <li>כרובית מטוגנת בטחינה </li>
-                    <li>הום פרייז </li>
-                    <li>כנפיים בצילי מתוק וחריף</li>
-                    <li>כנפיים ברביקיו </li>
-                    <li>כנפיים בסילאן ומייפל </li>
-                    <li>פלאפל בטורטיה</li>
-                </ul>
-            </section>
+        <section>
+            <h3> מאנצים של הביוקר <span class="price">35</span> </h3>
+            <ul>
+                <li>פינוק טורטיה</li>
+                <li>קוראסון בלונז</li>
+                <li>אדממה</li>
+            </ul>
+        </section>
 
-            <section>
-                <h3> מאנצים של הביוקר <span class="price">35</span> </h3>
-                <ul>
-                    <li>טוסט נקניק</li>
-                </ul>
-            </section>
+        <section>
+            <h3> מלך המאנצים <span class="price">29</span> </h3>
+            <ul>
+                <li class="promotion">טוסט נקניק</li>
+            </ul>
+        </section>
 
-            <section>
-                <h3> באגטים / טורטיות למאנצים רעבים במיוחד </h3>
-                <ul>
-                    <li> קבב                        <span class="price">46/42</span>    </li>
-                    <li> שאוורמה עגל                <span class="price">46/42</span>    </li>
-                    <li> שאוורמה פרגית              <span class="price">46/42</span>    </li>
-                    <li> מיקס מרגז ונקניק מיוחד     <span class="price">38/42</span>    </li>
-                    <li> מעורב                      <span class="price">46/42</span>    </li>
-                    <li> חזה עוף                    <span class="price">38/42</span>    </li>
-                </ul>
-            </section>
-           
-            <section>
-                <h3> מאנצים בריאותיים </h3>
-                <ul>
-                    <li> סלט חזה עוף        <span class="price">44</span> </li>
-                    <li> סלט קבב            <span class="price">46</span> </li>
-                    <li> סלט שווארמה עגל    <span class="price">46</span> </li>
-                    <li> סלט מעורב          <span class="price">46</span> </li>
-                </ul>
-            </section>
+        <section>
+            <h3> באגטים / טורטיות למאנצים רעבים במיוחד </h3>
+            <ul>
+                <li> קבב <span class="price">46/42</span> </li>
+                <li> שאוורמה עגל <span class="price">46/42</span> </li>
+                <li> שאוורמה פרגית <span class="price">46/42</span> </li>
+                <li> מיקס מרגז ונקניק מיוחד <span class="price">38/42</span> </li>
+                <li> מעורב <span class="price">46/42</span> </li>
+                <li> חזה עוף <span class="price">38/42</span> </li>
+            </ul>
+        </section>
 
-            <section>
-                <h3> מאנצים של פתיחת עיניים <span class="price">27</span> </h3>
-                <ul>
-                    <li>חביתה</li>
-                    <li>ביצת עין</li>
-                    <li>שקשוקה</li>
-                </ul>
-            </section>
+        <section>
+            <h3> מאנצים בריאותיים </h3>
+            <ul>
+                <li> סלט חזה עוף <span class="price">44</span> </li>
+                <li> סלט קבב <span class="price">46</span> </li>
+                <li> סלט שווארמה עגל <span class="price">46</span> </li>
+                <li> סלט מעורב <span class="price">46</span> </li>
+            </ul>
+        </section>
 
-            <section>
-                <h3> שתיה לצד המינצוצ </h3>
-                <ul>
-                    <li> מים / סודה     <span class="price">8</span> </li>
-                    <li> פחית           <span class="price">9</span> </li>
-                    <li> זכוכית         <span class="price">10</span> </li>
-                    <li> בירה           <span class="price">15</span> </li>
-                </ul>
-            </section>
-        </main>
-        <footer>
-            משה דיין 156 פסגת זאב ירושלים, 
-            <a href="tel:029999303">029999303</a>
-        </footer>
+        <section>
+            <h3> מאנצים של פתיחת עיניים <span class="price">27</span> </h3>
+            <ul>
+                <li>חביתה</li>
+                <li>ביצת עין</li>
+                <li>שקשוקה</li>
+            </ul>
+        </section>
 
-        <div id="float-number" class="float-number">
-            <a href="tel:029999303"><img src="./phone-white-icon.png" alt="Phone Icon"></a>
-        </div>
+        <section>
+            <h3> שתיה לצד המינצוצ </h3>
+            <ul>
+                <li> מים / סודה <span class="price">8</span> </li>
+                <li> פחית <span class="price">9</span> </li>
+                <li> זכוכית <span class="price">10</span> </li>
+                <li> בירה <span class="price">15</span> </li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        משה דיין 156 פסגת זאב ירושלים,
+        <a href="tel:029999303">029999303</a>
+    </footer>
 
-        <script type="text/javascript">
-            try {
-                url = new URL(window.location.href);
+    <div id="float-number" class="float-number">
+        <a href="tel:029999303"><img src="./phone-white-icon.png" alt="Phone Icon"></a>
+    </div>
 
-                if (! url.searchParams.get('menu')) {
-                    fadeIn(document.getElementById("float-number"))
-                }
-            } catch (error) {
-                console.error(error);
+    <script type="text/javascript">
+        try {
+            url = new URL(window.location.href);
+
+            if (!url.searchParams.get('menu')) {
+                fadeIn(document.getElementById("float-number"))
             }
+        } catch (error) {
+            console.error(error);
+        }
 
-            function fadeIn(el, display) {
-                el.style.opacity = 0;
-                el.style.display = display || "block";
-                (function fade() {
-                    var val = parseFloat(el.style.opacity);
-                    if (!((val += .1) > 1)) {
-                        el.style.opacity = val;
-                        requestAnimationFrame(fade);
-                    }
-                })();
-            };
-        </script>
-    </body>
+        function fadeIn(el, display) {
+            el.style.opacity = 0;
+            el.style.display = display || "block";
+            (function fade() {
+                var val = parseFloat(el.style.opacity);
+                if (!((val += .1) > 1)) {
+                    el.style.opacity = val;
+                    requestAnimationFrame(fade);
+                }
+            })();
+        };
+    </script>
+</body>
+
 </html>
