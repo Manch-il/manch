@@ -26,6 +26,10 @@
             color: #fff;
         }
 
+        header {
+            text-align: center;
+        }
+
         body {
             display: flex;
             flex-direction: column;
@@ -61,7 +65,6 @@
 
         ul {
             display: grid;
-            grid-template-columns: 1fr 1fr;
             gap: 6px;
             padding: 0;
             margin: 0;
@@ -85,6 +88,12 @@
         ul li.promotion img {
             max-height: 60px;
             border-radius: 100%;
+        }
+
+        ul li .details {
+            display: block;
+            font-size: 11px;
+            margin-top: 3px;
         }
 
         .price {
@@ -140,6 +149,10 @@
         }
 
         @media screen and (min-width: 728px) {
+            ul:not(.full-row) {
+                grid-template-columns: 1fr 1fr;
+            }
+
             body:after {
                 position: fixed;
                 content: " ";
@@ -185,6 +198,10 @@
                 transform: rotate(0);
             }
         }
+
+        .new {
+            display: none !important;
+        }
     </style>
     <title>מאנץ׳ - רק בגלל הדודא</title>
 </head>
@@ -192,6 +209,7 @@
 <body>
     <header>
         <img src="./logo.png" alt="Icon">
+        <h3 class="new">סלטים טריים ובאגטים נאפים במקום יום יום </h3>
     </header>
     <main>
         <section>
@@ -242,11 +260,44 @@
             <h3> באגטים / טורטיות למאנצים רעבים במיוחד </h3>
             <ul>
                 <li> קבב <span class="price">46/42</span> </li>
+                <li> מעורב <span class="price">46/42</span> </li>
                 <li> שאוורמה עגל <span class="price">46/42</span> </li>
                 <li> שאוורמה פרגית <span class="price">46/42</span> </li>
                 <li> מיקס מרגז ונקניק מיוחד <span class="price">38/42</span> </li>
-                <li> מעורב <span class="price">46/42</span> </li>
                 <li> חזה עוף <span class="price">38/42</span> </li>
+                <li> פרגית <span class="price">44/48</span> </li>
+                <li> שניצל <span class="price">38/42</span> </li>
+            </ul>
+        </section>
+
+        <section class="new">
+            <h3> מאנצ של בורגר </h3>
+            <ul class="full-row">
+                <li>
+                    הבית <span class="price">59</span>
+                    <span class="details">
+                        חסה עגבניה בצל מלפפון חמוץ והמבורגר 220 גרם עם טבעות בצל רוטב שום ופסטו לצד ציפס קטן
+                    </span>
+                </li>
+                <li>
+                    חריף אש <span class="price">59</span>
+                    <span class="details">
+                        חסה עגבניה בצל מלפפון חמוץ והמבורגר 220 גרם עם נקניקיות מרגז ורומנית מפולפלת
+                        לצד ציפס קטן
+                    </span>
+                </li>
+                <li>
+                    המפנק <span class="price">61</span>
+                    <span class="details">
+                        חסה עגבניה בצל מלפפון חמוץ והמבורגר 220 גרם עם ביצה עין וכתף צלי בקר לצד ציפס קטן
+                    </span>
+                </li>
+                <li>
+                    רק בשר <span class="price">61</span>
+                    <span class="details">
+                        חסה עגבניה בצל מלפפון חמוץ והמבורגר 220 גרם עם קורנביף לצד ציפס קטן
+                    </span>
+                </li>
             </ul>
         </section>
 
@@ -299,6 +350,12 @@
 
             if (!url.searchParams.get('menu')) {
                 fadeIn(document.getElementById("float-number"))
+            }
+            //test page
+            if (url.searchParams.get('test')) {
+                Array.from(document.getElementsByClassName("new")).forEach((el) => {
+                    el.classList.remove("new");
+                });
             }
         } catch (error) {
             console.error(error);
